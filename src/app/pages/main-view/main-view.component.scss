@@ -1,0 +1,91 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  user-select: none;
+}
+.app-name {
+  font-size: 28px;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+}
+.has-gradient-text {
+  background: linear-gradient(#13f7f4, #2af598);
+  background-clip: text;
+  color: transparent;
+}
+.board {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  // Ghi đè kích thước tối thiểu tự động
+  min-width: 0;
+  min-height: 0;
+
+  .board-bar {
+    background: rgba(gray, 0.5);
+    padding: 8px 15px;
+    .board-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+    }
+  }
+  .board-wrapper {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: auto;
+    .board-columns {
+      display: flex;
+      flex-grow: 1;
+      .board-column {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0; // để buộc tất cả các cột có cùng kích thước, bất kể nội dung
+
+        min-width: 300px;
+        margin: 30px;
+        padding: 25px;
+        border-radius: 5px;
+        background: rgba(white, 0.5);
+        &:not(:first-child) {
+          margin-left: 0;
+        }
+        .column-title {
+          font-size: 20px;
+          font-weight: 700;
+          font-family: "Lato", sans-serif;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+.tasks-container {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.task {
+  display: flex;
+  padding: 10px 12px;
+  background: white;
+  border-bottom: solid 1px #ddd;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+    0 3px 14px 2px rgba(0, 0, 0, 0.05);
+  cursor: move;
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
